@@ -12,13 +12,17 @@ function output_img = graybicubic(input_img, height, width)
         for q = 1:b
             y = floor(yscale*q);
             yparm = getFourpoints(y,n);
-            p_xy = input_img(xparm, yparm);
-            xinput = [x-xparm(1), x-xparm(1), x-xparm(2), x-xparm(3)];
-            wx = Weight(xinput);
-            yinput = [y-yparm(1), y-yparm(2), y-yparm(3), y-yparm(4)];
-            wy = Weight(yinput)';
-            sumnum = wx * p_xy * wy;
-            output_img(p,q) = sumnum;
+            sum = 0;
+            for i = 1:4
+                for j = 1:4
+                    p_xy = input_img(xparm(i),yparm(i));
+                    wx = Weight(xscale*p - xparm(i));
+                    wy = Weight(yscale*q - yparm(j));
+                    item = p_xy * wx * wy;
+                    sum = sum + item;
+                end
+            end
+            output_img(p,q) = sum;
         end
     end
     output_img = uint8(output_img);

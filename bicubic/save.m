@@ -8,9 +8,9 @@ R = input_img(:,:,1);
 G = input_img(:,:,2);
 B = input_img(:,:,3);
 [m, n] = size(R);
-output_img = zeros(a,n);
 a = round(m/3); 
 b = round(n/3);
+output_img = zeros(a,b);
 xscale = m/a;
 yscale = n/b;
 % xindice: x方向下标矩阵
@@ -64,17 +64,24 @@ wx = Weight(xWeightparms);
 wy = Weight(yWeightparms);
 
 % 遍历输出图像中的每一个矩阵
-for x = 1:a
-    for y = 1:b
-        xFour = squeeze(xpoints(x,y,:,:))';
-        yFour = squeeze(ypoints(x,y,:,:))';
-        p = R(xFour,yFour);
-        xweight = squeeze(wx(x,y,:,:));
-        yweight = squeeze(wy(x,y,:,:))';
-        weight = yweight * xweight;
-        result = sum(p .* weight);
-        output_img(x,y) = result;
-    end
-end
+% for x = 1:a
+%     for y = 1:b
+%         xFour = squeeze(xpoints(x,y,:,:));
+%         yFour = squeeze(ypoints(x,y,:,:))';
+%         p = R(xFour,yFour);
+%         xweight = squeeze(wx(x,y,:,:))';
+%         yweight = squeeze(wy(x,y,:,:));
+%         weight = yweight * xweight;
+%         result = sum(sum(p .* weight));
+%         output_img(x,y) = result;
+%     end
+% end
+% imshow(uint8(output_img));
 
+        xFour = squeeze(xpoints(1,1,:,:));
+        yFour = squeeze(ypoints(1,1,:,:));
+        p = R(xFour,yFour);
+        xweight = squeeze(wx(1,1,:,:))';
+        yweight = squeeze(wy(1,1,:,:));
+        weight = yweight * xweight;
 
