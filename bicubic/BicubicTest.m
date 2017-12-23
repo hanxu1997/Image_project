@@ -20,7 +20,7 @@ figure(1);
 subplot(2,3,4);
 imshow(baboon);
 [m, n] = size(baboon(:,:,1));
-% tic
+tic
 my_baboon1 = bicubic(baboon, round(m/3), round(n/3));
 subplot(2,3,5);
 imshow(my_baboon1);
@@ -30,4 +30,4 @@ my_baboon2 = bicubic(my_baboon1, m, n);
 subplot(2,3,6);
 imshow(my_baboon2);
 imwrite(my_baboon2, '..\output\BicubicTest\my_baboon2.bmp');
-% toc
+toc

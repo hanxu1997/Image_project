@@ -9,7 +9,6 @@ addpath(genpath('..\bicubic'));
 baboon = imread('..\set14\baboon.bmp');
 baboon = rgb2ycbcr(baboon);
 baboon1 = baboon(:,:,1);
-[m, n] = size(baboon1);
-baboon2 = anotherbicubic(baboon1, round(m/3), round(n/3));
-baboon2 = anotherbicubic(baboon2, m, n);
+baboon2 = imresize(baboon, 3, 'bicubic','Antialiasing',false);
+baboon2 = imresize(baboon, 3, 'bicubic','Antialiasing',false);
 psnr1 = PSNR(baboon1, baboon2)
