@@ -1,6 +1,8 @@
 function output = PSNR(X, Y)
     % X 原图
     % Y 近似图像
+    X = double(X);
+    Y = double(Y);
     [M, N] = size(X);
     % 遍历每一点算均方差
     parm1 = 1/(M*N);
