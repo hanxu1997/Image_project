@@ -1,4 +1,4 @@
-function output_img = anotherbicubic(input_img, height, width)
+function output_img = singleBicubic(input_img, height, width)
     input_img = double(input_img);
     [m, n] = size(input_img);
     a = height; 
